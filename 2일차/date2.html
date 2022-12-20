@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>date2</title>
+</head>
+<body>
+  날짜 <input value="2022"> / <input value="12"> / <input value="16"> 
+  <input value="100">
+  <button id="btn">계산</button>
+
+  <script>
+    btn.onclick = function(){
+      let year = parseInt(document.querySelectorAll("input")[0].value);
+      let month = parseInt(document.querySelectorAll("input")[1].value);
+      let day = parseInt(document.querySelectorAll("input")[2].value);
+      let add = parseInt(ducument.querySelectorAll("input")[3].value);
+
+      //날짜 객체 생성 +100     //월: 12 -> 11
+      let nextDay = new Date(year,month-1,day+add); 
+
+      //계산된 날짜를 출력
+      alert(nextDay.getFullYear() +"/" + (nextDay.getMonth()+1) + "/" + nextDay.getDate());
+    }
+  </script>
+</body>
+</html>

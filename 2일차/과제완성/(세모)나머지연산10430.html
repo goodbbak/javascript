@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>연습장</title>
+</head>
+<body>
+  <script>
+    //넣을 답을 차례로 num[012]로지정
+    let num = prompt().split(" ");
+    let A = num[0];
+    let B = num[1];
+    let C = num[2];
+    let result1 = (A+B)%C;
+    let result2 = ((A%C) + (B%C))%C;
+    let result3 = (A*B)%C;
+    let result4 = ((A%C) * (B%C))%C;
+    console.log(result1 , result2 , result3 , result4);
+  </script>
+</body>
+</html>
