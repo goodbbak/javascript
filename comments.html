@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>comments관리</title>
+  </head>
+  <body>
+    <h3>comments관리</h3>
+    <button onclick="selectPost()">post조회</button>
+    <div id="commentlist"></div>
+    <form>
+      <div><input id="id" placeholder="id" /></div>
+      <div><input id="body" placeholder="body" /></div>
+      <button type="button" id="btnAdd">comments등록</button>
+    </form>
+    <script>
+      selectComments();
+      commentlist.addEventListener("click", deleteComment);
+      btnAdd.addEventListener("click", insertComments);
+
+      function deleteComment(ev) {
+        let id = ev.target.getAttribute("data-id");
+        let url = "http://localhost:3000/comments/" + id;
+
+        let xhr = new XMLHttpRequest();
+        xhr.onload = function () {
+          selectComments();
+        };
+        xhr.open("delete", url);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send();
+      }
+
+      function insertComments() {
+        let url = "http://localhost:3000/comments";
+        let data = { id: id.value, body: body.value };
+        let xhr = new XMLHttpRequest();
+        xhr.onload = function () {
+          selectComments();
+        };
+        xhr.open("post", url);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send(JSON.stringify(data));
+      }
+
+      function selectComments() {
+        let url = "http://localhost:3000/comments";
+        let xhr = new XMLHttpRequest();
+        xhr.onload = function () {
+          const comment = JSON.parse(xhr.responseText);
+          commentlist.innerHTML = "";
+          for (let i = 0; i < comment.length; i++) {
+            commentlist.innerHTML += `<div>${comment[i].id}${comment[i].body}
+                              <button data-id=${comment[i].id}>삭제</button></div>`;
+          }
+        };
+        xhr.open("get", url, false);
+        xhr.send();
+      }
+    </script>
+  </body>
+</html>
