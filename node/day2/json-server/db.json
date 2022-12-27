@@ -1,0 +1,5 @@
+{
+  "posts": [{ "id": 1, "title": "json-server", "author": "park" }],
+  "comments": [{ "id": 1, "body": "some comment" }],
+  "profile": { "name": "park" }
+}
