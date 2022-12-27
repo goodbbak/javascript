@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>array.html</title>
+  </head>
+  <body>
+    <script>
+      //얕은복사
+      let arr1 = ["사과", "바나나", { id: 1, name: "park" }];
+      //let arr2 = [...arr1]; //기본타입은 깊은복사되고 객체타입은 얕은복사
+      let arr2 = JSON.parse(JSON.stringify(arr1)); //깊은복사
+      arr2[0] = "포도";
+      arr2[2].name = "choi";
+      console.table(arr1);
+      console.table(arr1);
+
+      //length
+      arr2.length = 0; //삭제
+      console.table("arr2", arr2);
+    </script>
+  </body>
+</html>
