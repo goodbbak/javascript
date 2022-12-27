@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>classList</title>
+  <style>
+    .panel{
+      color: blue;
+      font-size: 2em;
+    }
+    .hide{
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h3>class 속성을 제어</h3>
+  <button id="btn">안보이게 토글</button>
+  <div class="panel"> div </div>
+  <script>
+    btn.onclick = function(){
+    let div = document.getElementsByTagName("div")[0]
+    div.classList.toggle("hide")
+    }
+  </script>
+</body>
+</html>

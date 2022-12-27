@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>add_remove</title>
+</head>
+<body>
+  <h3>노드 추가 삭제</h3>
+  <button class="btnadd">+</button>
+  <div class="temp">
+    <input id="school"><input id="dt"><button class="btn">-</button>
+  </div>
+  <div id="result"></div>
+  <script>
+    let btnadd = document.getElementsByClassName("btnadd")[0]
+    btnadd.onclick = function(){
+      /* result.innerHTML +=
+      `<div class="temp">
+      <input id="school"><input id="dt"><button class="btn">-</button>
+      </div>` */
+
+      let div = document.createElement("div")
+      div.setAttribute('id','result');
+    }
+
+
+  </script>
+</body>
+</html>

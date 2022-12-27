@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>for5</title>
+</head>
+<body>
+  <table>
+    <tr>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>10</td>
+    </tr>
+  </table>
+  <script>
+    /* 1열의 합계*/
+    let sum = 0;
+    let td = document.querySelectorAll("tr td:first-child")
+    for( i=0 ; i < 5 ; i++){
+      sum += td[i].innerText*1
+    }
+    console.log(sum);
+  </script>
+</body>
+</html>

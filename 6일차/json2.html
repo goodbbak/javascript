@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSON : JavaScript Object Natation</title>
+</head>
+<body>
+  <h3>JSON : JavaScript Object Natation { or [</h3>
+  <script>
+    let data = { name:'park', age:20, hobby:['독서','게임']}
+    console.log(data.hobby[0])
+    let datas = [
+      { name:'park', age:20, hobby:['독서','게임']},
+      { name:'kim', age:20, hobby:['잠','먹기']}
+    ]
+    console.log(datas[0].hobby[0])
+    console.log(datas[1].name)
+
+    let info = {
+      result : true,
+      count : 4,
+      data :[
+      { name:'park', age:20, hobby:['독서','게임']},
+      { name:'kim', age:20, hobby:['잠','먹기']}
+    ]
+    }
+    console.log(info.data[0].hobby[0])
+
+    let chartdata = [
+      ['Mushrooms',3],
+      ['Onions',1]
+    ]
+    for(i=0;i<chartdata.length;i++){
+      console.log(chartdata[i][1])
+    }
+  </script>  
+</body>
+</html>

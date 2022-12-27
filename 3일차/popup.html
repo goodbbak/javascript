@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>popup</title>
+</head>
+<body>
+  <input id="txt"> 
+  <button id="btnSelect">선택</button>
+  <button id="btnClose">닫기</button>
+  <button id="btnPage">부모창의페이지이동</button>
+  <script>
+    btnSelect.onclick = function(){
+      opener.document.querySelector("#x").innerHTML = txt.value
+    }
+    btnClose.onclick = function(){
+      window.close();
+    }
+    btnPage.onclick = function(){
+      opener.location.assign("txt.value");
+    }
+
+  </script>
+</body>
+</html>

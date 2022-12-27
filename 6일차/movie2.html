@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>movie2</title>
+</head>
+<body>
+  <script src="movie.js"></script>
+  <h3>영화정보</h3>
+  <div id= "result"></div>
+  <div id="template" style="display:none">
+    <div><span class="no"></span>
+    <span class="title"></span>
+    <span class="cd"></span> 
+    </div>
+  </div>
+  <script>
+    let mvliest = movies.boxOfficeResult.dailyBoxOfficeList
+    for(i=0; i < mvliest.length ; i++){
+    let node =  template.children[0].cloneNode(true)
+    node.querySelector(".no").innerText = mvlist[i].rank
+    node.querySelector(".title").innerText = mvlist[i].movieNm
+    node.querySelector(".cd").innerText = mvlist[i].movieCd
+    result.append(node);
+  }
+  //출력 안됨 다시 해보기
+  </script>
+</body>
+</html>

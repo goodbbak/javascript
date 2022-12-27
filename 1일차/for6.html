@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>for6</title>
+</head>
+<body>
+  <h3>break, continue</h3>
+  <script>
+    arr = [10,5,20]
+    let num = 25 //검색값
+
+    //indexOf 검색
+    let i;
+    let idx = -1;
+    for(i=0 ; i<arr.length ; i++){
+      if(arr[i] == num){
+        idx = i;
+        break;
+      }
+    }
+    console.log(idx);
+    console.log(i);
+  </script>
+</body>
+</html>

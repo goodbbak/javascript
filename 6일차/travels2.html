@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>travels2</title>
+</head>
+<body>
+  <table>
+    <tr>
+      <td>1</td>
+      <td>2</td>
+      <td><button>조회</button></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>4</td>
+      <td><button>조회</button></td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>6</td>
+      <td><button>조회</button></td>
+    </tr>
+  </table>
+  <script>
+    document.querySelector("table").addEventListener("click",function(ev){
+     /*  let result1 = ev.target.parentNode.previousElementSibling.previousElementSibling.innerText
+      let result2 = ev.target.parentNode.previousElementSibling.innerText
+      console.log(result1,result2);
+     */
+      let node = ev.target
+      if(node.nodeNamee == "BUTTON"){
+        let tds = node.closest("tr").children
+        console.log(tds[0].innerText)
+        console.log(tds[1].innerText)
+      }
+
+    })
+  </script>
+</body>
+</html>

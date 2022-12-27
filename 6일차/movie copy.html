@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>movie</title>
+</head>
+<body>
+  <h3>영화정보</h3>
+  <input id="dt"><button id="btnSelect">조회</button>
+  <div id= "result"></div>
+  <script>
+    btnSelect.addEventListenr('click',function(){
+      //input태그 값을 확인
+    let xhr = new XMLDocument();
+    xhr.onload = function(){callback(xhr);}
+    let url ="https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=f5eef3421c602c6cb7ea224104795888&targetDt=20221221"
+    xhr.open('get',url);
+    xhr.send();
+    })
+
+
+
+    function callback(xhr){
+    let movies = JSON.parse(xhr.response)
+    let mvlist = movies.boxOfficeResult.dailyBoxOfficeList
+    for(i=0;i<mvList.length ; i++){
+     let list = `<div><span class="no">${obj[i].rnum}</span>
+        <span class="title">${obj[i].movieNm}</span>
+        <span class="cd">${obj[i].movieCd}</span> 
+        </div>`
+        result.innerHTML += list 
+      }
+    }
+   
+
+  
+  </script>
+</body>
+</html>

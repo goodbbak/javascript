@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>random</title>
+</head>
+<body>
+  <img src="./img/나.jpg" id="img">
+  <script>
+    let imgArr = new Array();
+    imgArr.push("./img/나.jpg");
+    imgArr.push("./img/레드향.jpg");
+    imgArr.push("./img/사과.jpg");
+    imgArr.push("./img/기린.jpg");
+    imgArr.push("./img/강아지.jpg");
+
+    let num = Math.floor(Math.random()*(imgArr.length)) //0~0.999 *10 => 0~9.9999 + 1하고 소수점이하버림
+    img.src = imgArr[num]
+  </script>
+</body>
+</html>

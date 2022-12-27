@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>movie</title>
+</head>
+<body>
+  <script src="movie.js"></script>
+  <h3>영화정보</h3>
+  <div id= "result"></div>
+  <script>
+    
+    let mvliest = movies.boxOfficeResult.dailyBoxOfficeList
+    for(i=0; i < mvliest.length ; i++){
+  // console.log(mvliest[i].movieNm)
+  for(i=0;i<mvliest.length ; i++){
+     let list = `<div><span class="no">${mvliest[i].rnum}</span>
+        <span class="title">${mvliest[i].movieNm}</span>
+        <span class="cd">${mvliest[i].movieCd}</span> 
+        </div>`
+        result.innerHTML += list /*cloneNode로 만들었으면 append사용 */
+      }
+  }
+  
+  </script>
+</body>
+</html>

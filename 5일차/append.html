@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>append</title>
+  <style>
+    div{
+      padding: 10px; margin: 5px; border: 1px solid red;
+    }
+  </style>
+</head>
+<body>
+  <div id="apple">사과</div>
+  <div id="banana">바나나</div>
+  <div id="kiwi">키위</div>
+
+  <div id="basket"></div>
+  <script>
+    apple.onclick = function(){
+      let div = document.createElement("div");   
+      let span = document.createElement("span"); //div.innerHTML ="<span>사과</span>";
+      span.innerText = "사과"
+      div.append(span);
+      div.setAttribute("class","fruit");
+      div.title = "사과"    
+      div.id = "apple"
+      basket.append(div);
+      div.onclick = function(){
+        this.remove();  //event.target.remove();
+      }
+    }
+    
+
+  </script>
+</body>
+</html>

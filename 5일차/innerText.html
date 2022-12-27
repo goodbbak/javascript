@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>innerText</title>
+</head>
+<body>
+  <h3>태그내용(바디) : innerText, innerHTML</h3>
+  <p id="p1"></p>
+  <input type="button" value="보기" id="btn"/>
+  <script>
+    //document.getElementById("btn")//
+    btn.onclick = function(){
+      p1.innerText = "<strong>Ajax</strong> 프로그래밍,<br/>기초"
+      //p1.innerHTML = "<u>Ajax</u> 프로그래밍,<br/>기초"
+    }
+  </script>
+</body>
+</html>

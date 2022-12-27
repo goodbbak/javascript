@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h3>json</h3>
+  <div id="result">
+    <div><span>choi</span><span>20</span></div>
+  </div>
+  <script>
+    let person = { name:'choi',age:'20' }
+    
+    let persons = [
+     { name:'choi',age:'20' },
+     { name:'park',age:'10' }
+    ]
+    for(i=0 ; i < persons.length ; i++){
+      let newNode = `<div><span>${persons[i].name}</span><span>${persons[i].age}</span></div>`;
+      result.innerHTML += newNode;
+    }
+  </script>
+</body>
+</html>

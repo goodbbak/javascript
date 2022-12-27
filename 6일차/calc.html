@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>calc</title>
+</head>
+<body>
+  <button id="btnReset">문제제출</button>
+  <input type="text" id="num1"> +
+  <input type="text" id="num2"> =
+  <input type="text" id="num3">
+  <button id="btn">결과확인</button>
+  <script>
+    btnReset.addEventListener("click",function(ev){
+      
+       let random1 = Math.floor(Math.random()*10+1)
+      let random2 = Math.floor(Math.random()*10+1)
+      num1.value = random1
+      num2.value = random2 
+
+     /*  for(i=0;i<2;i++){
+        document.query
+      } */
+    })
+
+    btn.addEventListener("click",function(){
+      if(num3.value == ""){
+        alert('입력')
+        return;
+      }
+      let result = parseInt(num1.value) + parseInt(num2.value)
+      if( result == num3.value){
+        alert("맞음");
+      }else{
+        alert("틀림");
+      }
+    });
+  </script>
+</body>
+</html>

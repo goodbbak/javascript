@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>add_remove</title>
+</head>
+
+<body>
+  <h3>노드 추가 삭제</h3>
+  <button class="btnadd">+</button>
+  <div class="temp">
+    <input id="school">
+    <input id="dt">
+    <button class="btn">-</button>
+  </div>
+  <div id="result"></div>
+  <script>
+    let btnadd = document.getElementsByClassName('btnadd')[0]//왜 굳이 이렇게 접근하는지? id주면 바로 onclick되는데
+    btnadd.onclick = function () {
+      let div = document.createElement("div");
+      let input1 = document.createElement("input")
+      input1.id = 'school';             //아이디 없어도 만들어지는데 왜? 단순 구분용?
+      let input2 = document.createElement("input") 
+      input2.id = 'dt';
+      let button = document.createElement("button")
+      button.className = "btn";
+      button.innerText = '-';
+      div.appendChild(input1);
+      div.appendChild(input2);
+      div.appendChild(button);
+      document.getElementById("result").appendChild(div); //result.appendChild(div); 이것도 이렇게 바로 되는데
+      //setAttribute
+      //appendChild = append
+      //innerText = innerHTML
+
+      /* `<div class="temp">
+      <input id="school"><input id="dt"><button class="btn">-</button>
+      </div>` */
+    }
+  </script>
+</body>
+
+</html>

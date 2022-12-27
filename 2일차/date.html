@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>date</title>
+</head>
+<body>
+  <script>
+    /* 날짜 객체 
+      객체 = 데이터(변수) + 메서드(함수)
+      */
+    let today = new Date();   //객체 생성
+    console.log(today.getTime());
+    console.log(today.getDay());
+    console.log(today.getDate());
+    console.log(today.getFullYear());
+    console.log(today.getMonth());
+    console.log(today.getHours());
+
+    let to7 = new Date(today.getTime() + 7*24*60*60*1000);
+    console.log(to7)
+
+    let to100 = new Date(2022, 11 ,16+100)
+    console.log(to100)
+  </script>
+</body>
+</html>

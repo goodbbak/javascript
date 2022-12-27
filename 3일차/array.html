@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>array</title>
+</head>
+<body>
+  <input id="txt">
+  <button id="addBtn">추가</button>
+  <button id="delBtn">삭제</button>
+  <div id="result"></div>
+  <script>
+    let fruit = new Array();  //[]
+    addBtn.onclick = function(){
+      fruit.push(txt.value);
+      result.innerText = fruit.toString();
+      txt.value = ' ';
+    }
+
+    delBtn.onclick = function(){
+      let idx = fruit.indexOf(txt.value);
+      if(idx >= 0){
+      fruit.splice(idx,1)
+      alert(idx);
+      result.innerText = fruit.toString();
+      txt.value = ' ';
+      }
+    }
+
+  </script>
+</body>
+</html>
