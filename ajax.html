@@ -17,6 +17,7 @@
       <button id="btnAdd" type="button">포스트등록</button>
     </form>
     <script>
+      //6일차 xhr참조
       selectPost(); //hoisting
 
       btnAdd.addEventListener("click", insertPost); //등록기능 직접이벤트
@@ -52,6 +53,7 @@
         let url = "http://localhost:3000/posts";
         let xhr = new XMLHttpRequest();
         xhr.onload = function () {
+          //url날리면 서버에서 응답이 오는데 이상하게 옴 그걸 JSON형식으로 바꾸기
           const post = JSON.parse(xhr.responseText);
           postlist.innerHTML = "";
           for (let i = 0; i < post.length; i++) {
