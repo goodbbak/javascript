@@ -1,3 +1,5 @@
+//웹의 요청에 응답해주는게 웹프레임워크 웹프레임워크를 만들고 사용할수있게 해주는게 express모듈
+//이 페이지가 서버역할
 var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
@@ -36,7 +38,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
-app.use("/customers",customersRouter);
+app.use("/customers", customersRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

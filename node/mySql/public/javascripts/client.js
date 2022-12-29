@@ -28,12 +28,14 @@ function selectAll() {
 function insert() {
   addbtn.addEventListener("click", function () {
     let data = {
+      id: userid.value,
       name: username.value,
       email: email.value,
       phone: phone.value,
       address: address.value,
     };
     fetch(url, {
+      //서버로 url보냄
       method: "post",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(data),
