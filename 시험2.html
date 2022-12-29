@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <br />
+    <div class="container">
+      <div>
+        <div class="mb-3 row">
+          <label for="no" class="col-sm-2 col-form-label bg-light"
+            >회원번호</label
+          >
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="userno" />
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="title" class="col-sm-2 col-form-label bg-light"
+            >이메일</label
+          >
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="email" />
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="writer" class="col-sm-2 col-form-label bg-light"
+            >이름</label
+          >
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="username" />
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="price" class="col-sm-2 col-form-label bg-light"
+            >포인트</label
+          >
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="point" />
+          </div>
+        </div>
+        <div class="mb-3 row" id="btn">
+          <button
+            type="button"
+            class="btn btn-primary col-sm-2 mx-3"
+            id="btnAdd"
+          >
+            추가
+          </button>
+          <button type="button" class="btn btn-primary col-sm-2" id="btnSum">
+            포인트합계
+          </button>
+        </div>
+      </div>
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>회원번호</th>
+            <th>이메일</th>
+            <th>이름</th>
+            <th>포인트</th>
+            <th>삭제</th>
+          </tr>
+        </thead>
+        <tbody id="list">
+          <tr>
+            <td>100</td>
+            <td>abc@yedam.ac</td>
+            <td>홍길동</td>
+            <td class="point">1500</td>
+            <td><button id="del">삭제</button></td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="5" align="right">
+              전체포인트 : <span id="totalPoint">00</span>점
+            </td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <script src="시험2.js"></script>
+  </body>
+</html>

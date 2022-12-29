@@ -25,19 +25,19 @@ var app = express();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
 
-/* app.use(
+app.use(
   session({
     secret: "secret key",
     resave: false,
     saveUninitialized: true,
     cookie: {
       httpOnly: true,
-      secure: true,
+      //secure: true,
       maxAge: 60000,
     },
     store: new fileStore(),
   })
-); */
+);
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
