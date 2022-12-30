@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>promise.html</title>
+  </head>
+  <body>
+    <h3>영화정보</h3>
+    <input id="dt" value="20221229" /><button id="btnSelect">조회</button>
+    <div id="result"></div>
+    <div id="info"></div>
+    <script>
+      result.addEventListener("click", function (ev) {
+        let movieCd = ev.target.innerHTML;
+        movieInfo(movieCd);
+      });
+
+      function promiseAjax(url) {
+        return new Promise(function (resolve, reject) {
+          let xhr = new XMLHttpRequest();
+          xhr.onload = function () {
+            resolve(xhr.response);
+          };
+          xhr.onerror = function () {
+            reject(xhr.status);
+          };
+          xhr.open("get", url);
+          xhr.send();
+        });
+      }
+
+      function movieInfo(movieCd) {
+        let url =
+          "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json?key=f5eef3421c602c6cb7ea224104795888&movieCd=" +
+          movieCd;
+        promiseAjax(url)
+          // .then(res=> JSON.parse(res))
+          .then((res) => {
+            info.innerHTML = res;
+          });
+      }
+
+      btnSelect.addEventListener("click", function () {
+        //3. 요청연결
+        let url =
+          "http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=f5eef3421c602c6cb7ea224104795888&targetDt=" +
+          dt.value;
+        promiseAjax(url)
+          .then((res) => JSON.parse(res))
+          .then((res) => {
+            res = res.boxOfficeResult.dailyBoxOfficeList;
+            for (let i = 0; i < res.length; i++) {
+              result.innerHTML += `<div>${res[i].movieCd}</div>`;
+            }
+            return res[0].movieCd;
+          })
+          .then((movieCd) => movieInfo(movieCd));
+      });
+    </script>
+  </body>
+</html>

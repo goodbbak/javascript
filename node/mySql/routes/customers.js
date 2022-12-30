@@ -37,7 +37,7 @@ router.post("/", (req, res) => {
 
 router.put("/:id", (req, res) => {
   let sql = "update customers set ? where id=?";
-  let data =[req.body,req,params.id];
+  let data =[req.body,req.params.id];
   pool.query(sql,data,function(err,results,fields){
     if (err){
       console.log(err);
