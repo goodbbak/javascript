@@ -1,0 +1,31 @@
+
+const mysql = require("mysql"); //mysql을 사용하기 위한 모듈실행
+//접속정보
+const conn = {
+  host: "localhost",
+  port: "3306",
+  user: "park",
+  password: "password",
+  database: "dev",
+};
+ //커넥션을 보다 쉽게 해주는게 pool = 서버입장에서 좋음 pool.js파일이랑 비교
+let connection = mysql.createConnection(conn); //db커넥션 생성 mysql에 연결
+connection.connect(); //db접속
+//insert추가
+let sql = "insert into customers set ?"; //?자리에 값이 들어감 query함수가 넣어줌
+
+let data = {
+  name: "최기자",
+  email: "choi@gmail.com",
+  phone: "010-2222",
+  address: "",
+};
+connection.query(sql, data, function (err, results, fields) {
+  //연결에 요청
+  if (err) {
+    console.log(err);
+  } else {
+    console.log(results); //json객체 타입으로 받아옴 parse 불필요
+  }
+});
+connection.end();

@@ -10,9 +10,8 @@ const conn = {
 let connection = mysql.createConnection(conn); //db커넥션 생성
 connection.connect(); //db접속
 
-
 let sql = "delete from customers where id = ?";
-let data = 3;
+let data = 13;
 connection.query(sql, data, function (err, results, fields) {
   if (err) {
     console.log(err);

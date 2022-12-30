@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>movie</title>
+  </head>
+  <body>
+    <script src="movie.js"></script>
+    <h3>영화정보</h3>
+    <input id="dt" value="20221229" /><button id="btnSelect">조회</button>
+    <div id="result"></div>
+    <div id="info"></div>
+    <script>
+      result.addEventListener("click", function (ev) {
+        let movieCd = ev.target.innerHTML;
+        movieInfo(movieCd);
+      });
+
+      function movieInfo(movieCd) {
+        //xhr객체생성
+        let xhr = new XMLHttpRequest();
+        //콜백함수
+        xhr.onload = function () {
+          info.innerHTML += xhr.response;
+        };
+        let url =
+          "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json?key=f5eef3421c602c6cb7ea224104795888&movieCd=" +
+          movieCd;
+        xhr.open("get", url);
+        xhr.send();
+      }
+
+      btnSelect.addEventListener("click", function () {
+        //xhr객체생성
+        let xhr = new XMLHttpRequest();
+        //콜백함수
+        xhr.onload = function () {
+          let datas = JSON.parse(xhr.response);
+          datas = datas.boxOfficeResult.dailyBoxOfficeList;
+          for (let i = 0; i < datas.length; i++) {
+            result.innerHTML += `
+              <div>
+                <span>${datas[i].movieCd}</span>
+                <span>${datas[i].movieNm}</span>
+              </div>`;
+          }
+          movieInfo(datas[0].movieCd);
+        };
+
+        //요청연결
+        let url =
+          "https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=f5eef3421c602c6cb7ea224104795888&targetDt=20221221";
+        xhr.open("get", url);
+        xhr.send();
+      });
+    </script>
+  </body>
+</html>
