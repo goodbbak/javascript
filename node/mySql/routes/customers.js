@@ -13,15 +13,16 @@ router.get("/", (req, res) => {
       console.log(err);
     }
     res.json(results);
+    console.log(res);
   });
 });
 
 //단건조회
 router.get("/:id", (req, res) => {
   sql = "SELECT * FROM customers where id=?";
-  pool.query(sql,req.id,function(err,results,fields){
+  pool.query(sql, req.id, function (err, results, fields) {
     res.json(results);
-  })
+  });
 });
 
 //등록
@@ -37,20 +38,20 @@ router.post("/", (req, res) => {
 
 router.put("/:id", (req, res) => {
   let sql = "update customers set ? where id=?";
-  let data =[req.body,req.params.id];
-  pool.query(sql,data,function(err,results,fields){
-    if (err){
+  let data = [req.body, req.params.id];
+  pool.query(sql, data, function (err, results, fields) {
+    if (err) {
       console.log(err);
     }
-    let resultData = {}
-    if(results.changedRows>0){
+    let resultData = {};
+    if (results.changedRows > 0) {
       resultData.result = true;
       resultData.data = req.body;
-    } else{
+    } else {
       resultsData.result = false;
     }
     res.json(results);
-  })
+  });
 });
 
 router.delete("/:id", (req, res) => {

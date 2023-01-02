@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #container {
+        width: 900px;
+        margin: 0 auto;
+      }
+      h1 {
+        text-align: center;
+      }
+      table {
+        width: 330px;
+        float: right;
+        margin-top: 8px;
+        margin-bottom: 5px;
+      }
+      th {
+        width: 80px;
+      }
+      td {
+        height: 32px;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid #bcbcbc;
+      }
+      #preview-image {
+        width: 200px;
+        height: 200px;
+        float: left;
+        margin-right: 30px;
+      }
+      #point {
+        vertical-align: middle;
+      }
+      #left label {
+        float: left;
+        width: 80px;
+      }
+      li {
+        margin: 25px;
+      }
+      #f_li {
+        margin-top: 30px;
+      }
+      textarea {
+        float: left;
+        width: 500px;
+        height: 200px;
+        clear: left;
+        margin-top: 7px;
+      }
+      #complete_btn {
+        width: 120px;
+        height: 40px;
+        float: left;
+        margin-top: 10px;
+        margin-left: 386px;
+      }
+      #delete_btn {
+        float: right;
+        width: 100px;
+        height: 38px;
+        margin-right: 5px;
+      }
+      #random_btn {
+        float: right;
+        width: 100px;
+        height: 38px;
+      }
+    </style>
+  </head>
+  <div id="container">
+    <body>
+      <h1>오늘의 점심메뉴는?</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>평점</th>
+            <th>가게명</th>
+            <th>대표메뉴</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+      <form method="post">
+        <div class="image-container">
+          <img
+            id="preview-image"
+            src="https://dummyimage.com/500x500/ffffff/000000.png&text=preview+image"
+          />
+          <input style="display: block" type="file" id="input-image" />
+        </div>
+        <ul id="left">
+          <li id="f_li">
+            <label>평점 :</label>
+            <input
+              type="number"
+              min="0"
+              max="10"
+              id="score"
+              name="score"
+              placeholder="10점만점"
+              style="width: 169px"
+            />
+          </li>
+          <li>
+            <label>가게명 :</label>
+            <input type="text" id="store" name="store" />
+          </li>
+          <li>
+            <label>대표메뉴 :</label>
+            <input type="text" id="menu" name="menu" />
+          </li>
+        </ul>
+        <textarea
+          placeholder="후기를 남겨주세요."
+          id="review"
+          name="review"
+        ></textarea>
+        <button id="complete_btn" type="button">작성완료</button>
+      </form>
+      <button id="random_btn">랜덤추천</button>
+      <button id="delete_btn">삭제</button>
+
+      <script>
+        const url = "/project";
+        insert(); //등록
+        function insert() {
+          complete_btn.addEventListener("click", function () {
+            let data = {
+              score: score.value,
+              store: store.value,
+              menu: menu.value,
+              review: review.value,
+            };
+            fetch(url, {
+              method: "post",
+              headers: { "content-type": "application/json" },
+              body: JSON.stringify(data),
+            }).then((res) => res.json());
+          });
+        }
+
+        function selectAll() {
+          fetch(url)
+            .then((res) => res.json())
+            .then((res) => {
+              for (let i = 0; i < res.length; i++) {
+                let tr = `<tr>
+                            <td>${res[i].score}</td>
+                            <td>${res[i].store}</td>
+                            <td>${res[i].menu}</td>
+                         </tr>`;
+                tbody.innerHTML += tr;
+              }
+              for (let i = 0; i < 10 - res.length; i++) {
+                let tr = `<tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                         </tr>`;
+                tbody.innerHTML += tr;
+              }
+            });
+        }
+        selectAll();
+
+        function readImage(input) {
+          if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+              const previewImage = document.getElementById("preview-image");
+              previewImage.src = e.target.result;
+            };
+            reader.readAsDataURL(input.files[0]);
+          }
+        }
+        const inputImage = document.getElementById("input-image");
+        inputImage.addEventListener("change", (e) => {
+          readImage(e.target);
+        });
+      </script>
+    </body>
+  </div>
+</html>
