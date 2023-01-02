@@ -29,6 +29,7 @@
       th,
       td {
         border: 1px solid #bcbcbc;
+        text-align: center;
       }
       #preview-image {
         width: 200px;
@@ -131,7 +132,7 @@
 
       <script>
         const url = "/project";
-        insert(); //등록
+        //등록
         function insert() {
           complete_btn.addEventListener("click", function () {
             let data = {
@@ -144,8 +145,18 @@
               method: "post",
               headers: { "content-type": "application/json" },
               body: JSON.stringify(data),
-            }).then((res) => res.json());
+            })
+              .then((res) => res.json())
+              .then((res) => {
+                clear();
+              });
           });
+        }
+        function clear() {
+          for (i = 1; i < res.length; i++) {
+            let trs = document.querySelectorAll("tr");
+            trs[i].innerHTML = "";
+          }
         }
 
         function selectAll() {
@@ -154,23 +165,23 @@
             .then((res) => {
               for (let i = 0; i < res.length; i++) {
                 let tr = `<tr>
-                            <td>${res[i].score}</td>
-                            <td>${res[i].store}</td>
-                            <td>${res[i].menu}</td>
-                         </tr>`;
+                                    <td>${res[i].score}</td>
+                                    <td>${res[i].store}</td>
+                                    <td>${res[i].menu}</td>
+                                 </tr>`;
                 tbody.innerHTML += tr;
               }
               for (let i = 0; i < 10 - res.length; i++) {
                 let tr = `<tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                         </tr>`;
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                 </tr>`;
                 tbody.innerHTML += tr;
               }
             });
         }
-        selectAll();
+        selectAll(); // 전체조회해서 오른쪽에 그리기
 
         function readImage(input) {
           if (input.files && input.files[0]) {
