@@ -20,7 +20,7 @@ router.get("/", (req, res) => {
 //단건조회
 router.get("/:id", (req, res) => {
   sql = "SELECT * FROM customers where id=?";
-  pool.query(sql, req.id, function (err, results, fields) {
+  pool.query(sql, req.params.id, function (err, results, fields) {
     res.json(results);
   });
 });
@@ -50,7 +50,7 @@ router.put("/:id", (req, res) => {
     } else {
       resultsData.result = false;
     }
-    res.json(results);
+    res.json(results[0]); //results는 배열로 들어오네?
   });
 });
 

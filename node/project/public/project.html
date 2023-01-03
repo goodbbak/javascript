@@ -61,36 +61,44 @@
         width: 120px;
         height: 40px;
         float: left;
-        margin-top: 10px;
-        margin-left: 386px;
+        margin-left: 10px;
+        margin-top: 5px;
       }
       #delete_btn {
-        float: right;
+        float: left;
         width: 100px;
-        height: 38px;
+        height: 40px;
         margin-right: 5px;
+        margin-left: 270px;
+        margin-top: 5px;
       }
       #random_btn {
         float: right;
         width: 100px;
         height: 38px;
       }
+      #table_div {
+        float: right;
+        padding: 0;
+      }
     </style>
   </head>
   <div id="container">
     <body>
       <h1>오늘의 점심메뉴는?</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>평점</th>
-            <th>가게명</th>
-            <th>대표메뉴</th>
-          </tr>
-        </thead>
-        <tbody id="tbody"></tbody>
-      </table>
-      <form method="post">
+      <div style="height: 411px; overflow: auto" id="table_div">
+        <table>
+          <thead>
+            <tr>
+              <th>평점</th>
+              <th>가게명</th>
+              <th>대표메뉴</th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+      <form>
         <div class="image-container">
           <img
             id="preview-image"
@@ -108,31 +116,33 @@
               id="score"
               name="score"
               placeholder="10점만점"
-              style="width: 169px"
+              style="width: 163px"
+              class="notouch"
             />
           </li>
           <li>
             <label>가게명 :</label>
-            <input type="text" id="store" name="store" />
+            <input type="text" id="store" name="store" class="notouch" />
           </li>
           <li>
             <label>대표메뉴 :</label>
-            <input type="text" id="menu" name="menu" />
+            <input type="text" id="menu" name="menu" class="notouch" />
           </li>
         </ul>
         <textarea
           placeholder="후기를 남겨주세요."
           id="review"
           name="review"
+          class="notouch"
         ></textarea>
+        <button id="delete_btn" type="button">삭제</button>
         <button id="complete_btn" type="button">작성완료</button>
       </form>
-      <button id="random_btn">랜덤추천</button>
-      <button id="delete_btn">삭제</button>
+      <button id="random_btn" type="button">랜덤추천</button>
 
       <script>
         const url = "/project";
-        //등록
+
         function insert() {
           complete_btn.addEventListener("click", function () {
             let data = {
@@ -140,6 +150,7 @@
               store: store.value,
               menu: menu.value,
               review: review.value,
+              image_path: document.querySelector("#preview-image").src,
             };
             fetch(url, {
               method: "post",
@@ -148,35 +159,94 @@
             })
               .then((res) => res.json())
               .then((res) => {
-                clear();
+                selectAll();
+                inputClear();
               });
           });
         }
-        function clear() {
-          for (i = 1; i < res.length; i++) {
-            let trs = document.querySelectorAll("tr");
-            trs[i].innerHTML = "";
+        insert();
+
+        delete_btn.addEventListener("click", function () {
+          let store = document.querySelector("#store").value;
+          fetch(`${url}/${store}`, { method: "delete" }).then(() => {
+            inputClear();
+            selectAll();
+          });
+        });
+
+        random_btn.addEventListener("click", function () {
+          const occupied = [];
+          for (i = 1; i < document.querySelectorAll("tr").length; i++) {
+            occupied.push(
+              document.querySelectorAll("tr")[i].children[1].innerText
+            );
+          }
+          for (i = 0; i < occupied.length; i++) {
+            if (occupied[i] == "") {
+              occupied.splice(i, 10 - i);
+            }
+          }
+          document.querySelectorAll("tr")[i].children[1].innerText;
+          const randomNum = Math.floor(Math.random() * occupied.length + 1);
+          let store =
+            document.querySelectorAll("tr")[randomNum].children[1].innerText;
+          fetch(`${url}/${store}`)
+            .then((res) => res.json())
+            .then((res) => {
+              score.value = res.score;
+              document.querySelector("#store").value = res.store;
+              menu.value = res.menu;
+              review.value = res.review;
+              document.querySelector("#preview-image").src = res.image_path;
+            });
+          inputX();
+        });
+
+        function selectOne() {
+          //단건조회
+          tbody.addEventListener("click", function (ev) {
+            let store = ev.target.closest("tr").children[1].innerText;
+            fetch(`${url}/${store}`)
+              .then((res) => res.json())
+              .then((res) => {
+                score.value = res.score;
+                document.querySelector("#store").value = res.store;
+                menu.value = res.menu;
+                review.value = res.review;
+                document.getElementById("preview-image").src = res.image_path;
+              });
+            inputX();
+          });
+        }
+
+        function inputX() {
+          let notouchs = document.getElementsByClassName("notouch");
+          for (i = 0; i < notouchs.length; i++) {
+            notouchs[i].readOnly = true;
           }
         }
+
+        selectOne();
 
         function selectAll() {
           fetch(url)
             .then((res) => res.json())
             .then((res) => {
+              tbody.innerHTML = "";
               for (let i = 0; i < res.length; i++) {
                 let tr = `<tr>
-                                    <td>${res[i].score}</td>
-                                    <td>${res[i].store}</td>
-                                    <td>${res[i].menu}</td>
-                                 </tr>`;
+                                            <td>${res[i].score}</td>
+                                            <td>${res[i].store}</td>
+                                            <td>${res[i].menu}</td>
+                                         </tr>`;
                 tbody.innerHTML += tr;
               }
               for (let i = 0; i < 10 - res.length; i++) {
                 let tr = `<tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                 </tr>`;
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                         </tr>`;
                 tbody.innerHTML += tr;
               }
             });
@@ -197,6 +267,14 @@
         inputImage.addEventListener("change", (e) => {
           readImage(e.target);
         });
+        function inputClear() {
+          (score.value = ""),
+            (store.value = ""),
+            (menu.value = ""),
+            (review.value = ""),
+            (document.getElementById("preview-image").src =
+              "https://dummyimage.com/500x500/ffffff/000000.png&text=preview+image");
+        }
       </script>
     </body>
   </div>
