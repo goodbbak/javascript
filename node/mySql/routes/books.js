@@ -39,7 +39,7 @@ router.post("/", (req, res) => {
 //수정
 router.put("/:id", (req, res) => {
   let data = [req.body, req, params.id];
-  pool.query(sql, data, function (err, results, fields) {
+  pool.query(sql.update, data, function (err, results, fields) {
     if (err) {
       console.log(err);
     }

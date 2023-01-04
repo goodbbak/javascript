@@ -1,4 +1,4 @@
-// project router DB로 요청
+// project2 router DB로 요청
 const express = require("express");
 const pool = require("../sql/pool");
 let router = express.Router();

@@ -36,8 +36,9 @@ router.post("/", (req, res) => {
   });
 });
 
+//수정
 router.put("/:id", (req, res) => {
-  let sql = "update customers set ? where id=?";
+  let sql = "update customers set ? where id=?"; //set에 칼럼명
   let data = [req.body, req.params.id];
   pool.query(sql, data, function (err, results, fields) {
     if (err) {

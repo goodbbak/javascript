@@ -95,7 +95,7 @@
               min="0"
               max="10"
               id="score"
-              name="score"            
+              name="score"
               style="width: 169px"
             />
           </li>
@@ -108,82 +108,21 @@
             <input type="text" id="menu" name="menu" />
           </li>
         </ul>
-        <textarea
-        
-          id="review"
-          name="review"
-        ></textarea>
+        <textarea id="review" name="review"></textarea>
         <button id="complete_btn" type="button">작성완료</button>
       </form>
-    
       <script>
-        const url = "/project";
-        //등록
-        function insert() {
-          complete_btn.addEventListener("click", function () {
-            let data = {
-              score: score.value,
-              store: store.value,
-              menu: menu.value,
-              review: review.value,
-            };
-            fetch(url, {
-              method: "post",
-              headers: { "content-type": "application/json" },
-              body: JSON.stringify(data),
-            })
-              .then((res) => res.json())
-              .then((res) => {
-                clear();
-              });
+        const url = "/project2";
+        
+        fetch(`${url}/${store.value}`)
+          .then((res) => res.json())
+          .then((res) => {
+            score.value = res.score;
+            document.querySelector("#store").value = res.store;
+            menu.value = res.menu;
+            review.value = res.review;
+            document.getElementById("preview-image").src = res.image_path;
           });
-        }
-        insert();
-        function clear() {
-          for (i = 1; i < res.length; i++) {
-            let trs = document.querySelectorAll("tr");
-            trs[i].innerHTML = "";
-          }
-        }
-
-        function selectAll() {
-          fetch(url)
-            .then((res) => res.json())
-            .then((res) => {
-              for (let i = 0; i < res.length; i++) {
-                let tr = `<tr>
-                                    <td>${res[i].score}</td>
-                                    <td>${res[i].store}</td>
-                                    <td>${res[i].menu}</td>
-                                 </tr>`;
-                tbody.innerHTML += tr;
-              }
-              for (let i = 0; i < 10 - res.length; i++) {
-                let tr = `<tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                 </tr>`;
-                tbody.innerHTML += tr;
-              }
-            });
-        }
-        selectAll(); // 전체조회해서 오른쪽에 그리기
-
-        function readImage(input) {
-          if (input.files && input.files[0]) {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-              const previewImage = document.getElementById("preview-image");
-              previewImage.src = e.target.result;
-            };
-            reader.readAsDataURL(input.files[0]);
-          }
-        }
-        const inputImage = document.getElementById("input-image");
-        inputImage.addEventListener("change", (e) => {
-          readImage(e.target);
-        });
       </script>
     </body>
   </div>
