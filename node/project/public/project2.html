@@ -101,7 +101,7 @@
           </li>
           <li>
             <label>가게명 :</label>
-            <input type="text" id="store" name="store" />
+            <input type="text" id="store" name="store" value="태산" />
           </li>
           <li>
             <label>대표메뉴 :</label>
@@ -113,7 +113,6 @@
       </form>
       <script>
         const url = "/project2";
-        
         fetch(`${url}/${store.value}`)
           .then((res) => res.json())
           .then((res) => {
