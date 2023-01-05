@@ -251,7 +251,7 @@
           //단건조회
           tbody.addEventListener("click", function (ev) {
             let store = ev.target.closest("tr").children[1].innerText;
-            location.href = `/project2.html?store=${store}`;
+            //location.href = `/project2.html?store=${store}`;
             fetch(`${url}/${store}`)
               .then((res) => res.json())
               .then((res) => {
