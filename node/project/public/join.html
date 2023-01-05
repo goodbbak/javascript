@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>join page</title>
+  <style>
+    div{
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <body>
+    <div>
+      <label>아이디 : <input id="id" type="text" /></label>
+    </div>
+    <div>
+      <label>비밀번호 : <input id="pw" type="text" /></label>
+    </div>
+    <div>
+      <label>비밀번호 확인: <input id="r_pw" type="text" /></label>
+    </div>
+
+    <div>
+      <input type="button" value="뒤로가기" onclick="back();">
+      <input type="button" id="make_user" value="계정생성" >
+    </div>
+    <script>
+      const url = "/join";
+      //회원가입
+      make_user.addEventListener("click", function () {
+      create_id();
+      let data = {
+      user_id: id.value,
+      user_pw: pw.value,
+      };
+      fetch(`${url}/${id.value}`)
+      .then((res) => res.json())
+      .then((res) => console.log(res));
+
+      fetch(url, {
+      method: "post",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(data),
+      }).then((res) => res.json());
+      }); 
+
+      function login() {
+        var id = document.querySelector("#id");
+        var pw = document.querySelector("#pw");
+        if (id.value == "" || pw.value == "") {
+        alert("로그인을 할 수 없습니다.");
+        } else {
+        location.href = "";
+        }
+      }
+
+      function back() {
+        history.go(-1);
+      }
+
+      function create_id() {
+        var id = document.querySelector("#id");
+        var pw = document.querySelector("#pw");
+        var r_pw = document.querySelector("#r_pw");
+        if (id.value == "" || pw.value == "" || r_pw.value == "") {
+         alert("회원가입 할 수 없습니다.");
+        } else {
+        if (pw.value !== r_pw.value) {
+          alert("비밀번호를 확인해주세요.");
+        } else {
+         location.href = "login.html";
+          }
+        }
+            }
+    </script>
+</body>
+</html>

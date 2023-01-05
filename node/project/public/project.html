@@ -160,6 +160,10 @@
       <button id="random_btn" type="button">랜덤추천</button>
 
       <script>
+        const url1 = new URL("https://example.com/?a=hello&b=world");
+        const params1 = new URLSearchParams(location.search);
+        let user_id = params1.get("user_id");
+
         const url = "/project";
         //새로고침버튼 눌렀을때
         reset_btn.addEventListener("click", function () {
@@ -197,6 +201,7 @@
               return;
             }
             let data = {
+              user_id: user_id,
               score: score.value,
               store: store.value,
               menu: menu.value,
@@ -244,7 +249,6 @@
               review.value = res.review;
               document.querySelector("#preview-image").src = res.image_path;
             });
-          inputX();
         });
 
         function selectOne() {

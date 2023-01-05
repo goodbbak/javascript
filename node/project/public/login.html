@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>login page</title>
+    <style>
+      div {
+        padding: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <label>아이디 : <input id="id" type="text" /></label>
+    </div>
+    <div>
+      <label>비밀번호 : <input id="pw" type="text" /></label>
+    </div>
+
+    <div>
+      <a href="join.html"><input type="button" value="회원가입" /></a>
+      <input type="button" value="로그인" id="login_btn" />
+    </div>
+    <script>
+      const url = '/login'
+      //로그인버튼누르면
+      login_btn.addEventListener("click", function () {
+        login();
+      });
+
+      function login() {
+        var id = document.querySelector("#id");
+        var pw = document.querySelector("#pw");
+
+        if (id.value == "" || pw.value == "") {
+          alert("로그인을 할 수 없습니다.");
+        } else {
+          
+          location.href = `/project.html?user_id=${id.value}`;
+        }
+      }
+
+      function back() {
+        history.go(-1);
+      }
+
+      function create_id() {
+        var id = document.querySelector("#id");
+        var pw = document.querySelector("#pw");
+        var r_pw = document.querySelector("#r_pw");
+
+        if (id.value == "" || pw.value == "" || r_pw.value == "") {
+          alert("회원가입 할 수 없습니다.");
+        } else {
+          if (pw.value !== r_pw.value) {
+            alert("비밀번호를 확인해주세요.");
+          } else {
+            location.href = "login.html";
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
