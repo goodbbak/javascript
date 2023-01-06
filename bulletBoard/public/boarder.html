@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>게시판</title>
+    <link rel="stylesheet" href="./stylesheets/boarder.css" />
+  </head>
+  <body>
+    <header class="top-menu con row">
+      <div class="cell-right">
+        <a href="/logout">로그아웃</a>
+        <a href="#" onclick="crt()">글 작성</a>
+        <a href="#" onclick="upd()" id="updt" style="display: none">글 수정</a>
+      </div>
+    </header>
+
+    <h1 class="con">게시글 목록</h1>
+    <section class="article-list table-common con">
+      <table border="1">
+        <thead>
+          <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>카테고리</th>
+          </tr>
+        </thead>
+        <tbody id="list"></tbody>
+      </table>
+    </section>
+
+    <section
+      class="article-detail table-common con row"
+      id="detail"
+      style="display: none"
+    >
+      <h1 class="con">게시글 상세</h1>
+      <div>
+        <span id="writer"></span>
+      </div>
+      <table border="1">
+        <colgroup>
+          <col width="100px" />
+        </colgroup>
+        <tbody>
+          <tr>
+            <th>제목</th>
+            <td id="title"></td>
+            <th>번호</th>
+            <td id="no"></td>
+          </tr>
+          <tr>
+            <th>날짜</th>
+            <td id="time"></td>
+            <th>카테고리</th>
+            <td id="category"></td>
+          </tr>
+          <tr>
+            <td id="text" colspan="4"></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <form action="">
+      <fieldset
+        class="article-list table-common con"
+        id="inputField"
+        style="display: none"
+      >
+        <label>제목</label><input type="text" name="title" id="inputTitle" />
+        <label for="category">카테고리</label>
+
+        <select name="category" id="inputCategory">
+          <option value="">카테고리 선택</option>
+          <option value="monologue">monologue</option>
+          <option value="prey">prey</option>
+          <option value="bullchit">bullshit</option>
+          <option value="joke">joke</option>
+          <option value="information">information</option>
+          <option value="diary">diary</option>
+        </select>
+        <label id="num" style="display: none"></label>
+        <div><label>내용</label></div>
+        <textarea name="txt" id="txt" cols="100" rows="10"></textarea>
+        <button type="button" id="ct" style="display: none">글쓰기</button>
+        <button type="button" id="edi" style="display: none">수정</button>
+        <button type="button" id="dell" style="display: none">삭제</button>
+      </fieldset>
+    </form>
+    <footer></footer>
+    <script src="./javascripts/client.js"></script>
+  </body>
+</html>

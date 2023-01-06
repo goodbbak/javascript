@@ -8,7 +8,7 @@
     <style>
       #container {
         width: 900px;
-        margin: 0 auto;
+        margin: 0 auto;        
       }
       h1 {
         text-align: center;
@@ -77,11 +77,12 @@
         padding: 0;
         clear: right;
       }
+     
     </style>
   </head>
   <div id="container">
     <body>
-      <h1>오늘의 점심메뉴는?</h1>
+      <h1>오늘은 뭐 먹지</h1>
       <table id="head_table">
         <colgroup>
           <col width="100px" />
@@ -158,12 +159,8 @@
         <button id="complete_btn" type="button">작성완료</button>
       </form>
       <button id="random_btn" type="button">랜덤추천</button>
-
+    </div>
       <script>
-        const url1 = new URL("https://example.com/?a=hello&b=world");
-        const params1 = new URLSearchParams(location.search);
-        let user_id = params1.get("user_id");
-
         const url = "/project";
         //새로고침버튼 눌렀을때
         reset_btn.addEventListener("click", function () {
@@ -201,7 +198,6 @@
               return;
             }
             let data = {
-              user_id: user_id,
               score: score.value,
               store: store.value,
               menu: menu.value,
@@ -255,7 +251,6 @@
           //단건조회
           tbody.addEventListener("click", function (ev) {
             let store = ev.target.closest("tr").children[1].innerText;
-            location.href = `/project2.html?store=${store}`;
             fetch(`${url}/${store}`)
               .then((res) => res.json())
               .then((res) => {
@@ -318,7 +313,7 @@
             }
           }
         }
-
+        //전체조회
         function selectAll() {
           fetch(url)
             .then((res) => res.json())
